@@ -162,9 +162,19 @@
   <ItemGroup>
     <ClInclude Include="src\common.h" />
     <ClInclude Include="src\Shader.h" />
+    <ClInclude Include="src\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
+    <None Include="shaders\simple.frag" />
+    <None Include="shaders\simple.vs" />
+    <None Include="shaders\texture.frag" />
+    <None Include="shaders\texture.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="textures\awesomeface.png" />
+    <Image Include="textures\container.jpg" />
+    <Image Include="textures\wall.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

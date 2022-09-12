@@ -32,8 +32,26 @@
     <ClInclude Include="src\common.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="src\stb_image.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
+    <None Include="shaders\simple.vs" />
+    <None Include="shaders\simple.frag" />
+    <None Include="shaders\texture.frag" />
+    <None Include="shaders\texture.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="textures\container.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\wall.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\awesomeface.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>
