@@ -4,6 +4,14 @@
 #include "Shader.h"
 #include "stb_image.h"
 
+glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+
+float deltaTime = 0.0f;	// Time between current frame and last frame
+float lastFrame = 0.0f; // Time of last frame
+
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
@@ -199,6 +207,10 @@ int main()
     // -----------
     while (!glfwWindowShouldClose(window))
     {
+        float currentFrame = static_cast<float>(glfwGetTime());
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+
         // input
         // -----
         processInput(window);
@@ -214,8 +226,32 @@ int main()
         glActiveTexture(GL_TEXTURE0 + 1);
         glBindTexture(GL_TEXTURE_2D, texture2);
 
+        float radius = 10.0f;
+        float camX = cosf(glfwGetTime() * 3.14159) * radius;
+        float camZ = sinf(glfwGetTime() * 3.14159) * radius;
         //glm::mat4 model = glm::rotate(glm::mat4(1.0f), (float)glfwGetTime() * glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-        glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
+        //glm::vec3 cameraPos = glm::vec3(camX, 0.0f, camZ);
+        //glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
+        //glm::vec3 zAxis = glm::normalize(cameraPos - cameraTarget);
+        //glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+        //glm::vec3 xAxis = glm::cross(up, zAxis);
+        //glm::vec3 yAxis = glm::cross(zAxis, xAxis);
+        //glm::mat4 lookAt =
+        //    glm::mat4(
+        //        glm::vec4(xAxis.x, yAxis.x, zAxis.x, 0.0f),
+        //        glm::vec4(xAxis.y, yAxis.y, zAxis.y, 0.0f),
+        //        glm::vec4(xAxis.z, yAxis.z, zAxis.z, 0.0f),
+        //        glm::vec4(glm::vec3(0.0), 1.0)
+        //    ) 
+        //    * 
+        //    glm::mat4(
+        //        1.0f, 0.0f, 0.0f, 0.0f,
+        //        0.0f, 1.0f, 0.0f, 0.0f,
+        //        0.0f, 0.0f, 1.0f, 0.0f,
+        //        -cameraPos.x, -cameraPos.y, -cameraPos.z,  1.0f
+        //    );
+
+        glm::mat4 view = glm::lookAt(cameraPos, cameraPos - glm::vec3(0.0f, 0.0f, 1.0f), cameraUp);
         glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 
         ourTexShader.Use();
@@ -255,10 +291,26 @@ int main()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
+
 void processInput(GLFWwindow* window)
 {
+    const float cameraSpeed = 2.5f * deltaTime;
+    glm::vec3 right = glm::normalize(glm::cross(cameraFront, cameraUp));
+
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
+    else if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        cameraPos += cameraSpeed * cameraFront;
+    else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        cameraPos -= cameraSpeed * cameraFront;
+    else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        cameraPos -= cameraSpeed * right;
+    else if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        cameraPos += cameraSpeed * right;
+    else if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+        cameraPos += cameraSpeed * cameraUp;
+    else if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+        cameraPos -= cameraSpeed * cameraUp;
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
