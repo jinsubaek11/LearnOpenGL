@@ -3,17 +3,20 @@
 #include "common.h"
 #include "Shader.h"
 #include "stb_image.h"
+#include "Camera.h"
 
-glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void processInput(GLFWwindow* window);
+void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 float deltaTime = 0.0f;	// Time between current frame and last frame
 float lastFrame = 0.0f; // Time of last frame
 
-
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow* window);
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+bool firstMouse = true;
+float lastX = 800.f / 2.f;
+float lastY = 600.f / 2.f;
 
 // settings
 const unsigned int SCR_WIDTH = 800;
@@ -41,8 +44,13 @@ int main()
         glfwTerminate();
         return -1;
     }
+
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetScrollCallback(window, scroll_callback);
+
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // glad: load all OpenGL function pointers
     // ---------------------------------------
@@ -226,37 +234,12 @@ int main()
         glActiveTexture(GL_TEXTURE0 + 1);
         glBindTexture(GL_TEXTURE_2D, texture2);
 
-        float radius = 10.0f;
-        float camX = cosf(glfwGetTime() * 3.14159) * radius;
-        float camZ = sinf(glfwGetTime() * 3.14159) * radius;
-        //glm::mat4 model = glm::rotate(glm::mat4(1.0f), (float)glfwGetTime() * glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-        //glm::vec3 cameraPos = glm::vec3(camX, 0.0f, camZ);
-        //glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
-        //glm::vec3 zAxis = glm::normalize(cameraPos - cameraTarget);
-        //glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
-        //glm::vec3 xAxis = glm::cross(up, zAxis);
-        //glm::vec3 yAxis = glm::cross(zAxis, xAxis);
-        //glm::mat4 lookAt =
-        //    glm::mat4(
-        //        glm::vec4(xAxis.x, yAxis.x, zAxis.x, 0.0f),
-        //        glm::vec4(xAxis.y, yAxis.y, zAxis.y, 0.0f),
-        //        glm::vec4(xAxis.z, yAxis.z, zAxis.z, 0.0f),
-        //        glm::vec4(glm::vec3(0.0), 1.0)
-        //    ) 
-        //    * 
-        //    glm::mat4(
-        //        1.0f, 0.0f, 0.0f, 0.0f,
-        //        0.0f, 1.0f, 0.0f, 0.0f,
-        //        0.0f, 0.0f, 1.0f, 0.0f,
-        //        -cameraPos.x, -cameraPos.y, -cameraPos.z,  1.0f
-        //    );
-
-        glm::mat4 view = glm::lookAt(cameraPos, cameraPos - glm::vec3(0.0f, 0.0f, 1.0f), cameraUp);
-        glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
-
         ourTexShader.Use();
 
+        glm::mat4 view = camera.GetViewMatrix();
         ourTexShader.SetMat4("view", view);
+
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
         ourTexShader.SetMat4("projection", projection);
 
         glBindVertexArray(VAO);
@@ -295,22 +278,22 @@ int main()
 void processInput(GLFWwindow* window)
 {
     const float cameraSpeed = 2.5f * deltaTime;
-    glm::vec3 right = glm::normalize(glm::cross(cameraFront, cameraUp));
 
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
-    else if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        cameraPos += cameraSpeed * cameraFront;
-    else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        cameraPos -= cameraSpeed * cameraFront;
-    else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        cameraPos -= cameraSpeed * right;
-    else if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        cameraPos += cameraSpeed * right;
-    else if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
-        cameraPos += cameraSpeed * cameraUp;
-    else if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
-        cameraPos -= cameraSpeed * cameraUp;
+
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        camera.ProcessKeyboard(FORWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        camera.ProcessKeyboard(BACKWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        camera.ProcessKeyboard(LEFT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        camera.ProcessKeyboard(RIGHT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+        camera.ProcessKeyboard(UP, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+        camera.ProcessKeyboard(DOWN, deltaTime);
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
@@ -320,4 +303,30 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     // make sure the viewport matches the new window dimensions; note that width and 
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
+}
+
+void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
+{
+    float xpos = static_cast<float>(xposIn);
+    float ypos = static_cast<float>(yposIn);
+
+    if (firstMouse)
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos;
+    
+    lastX = xpos;
+    lastY = ypos;
+
+    camera.ProcessMouseMovement(xoffset, yoffset);
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    camera.ProcessMouseScroll(static_cast<float>(yoffset));
 }
