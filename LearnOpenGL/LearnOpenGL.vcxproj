@@ -168,6 +168,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
+    <None Include="shaders\color.frag" />
+    <None Include="shaders\color.vs" />
     <None Include="shaders\simple.frag" />
     <None Include="shaders\simple.vs" />
     <None Include="shaders\texture.frag" />

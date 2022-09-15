@@ -48,6 +48,8 @@
     <None Include="shaders\simple.frag" />
     <None Include="shaders\texture.frag" />
     <None Include="shaders\texture.vs" />
+    <None Include="shaders\color.vs" />
+    <None Include="shaders\color.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">
