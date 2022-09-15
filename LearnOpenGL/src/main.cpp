@@ -222,10 +222,33 @@ int main()
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
         glm::mat4 model = glm::mat4(1.0f);
 
+        float degree =
+            (sinf((float)glfwGetTime() * glm::two_pi<float>()) + 1.0) * 5.0;
+
+        glm::mat3 rotate = glm::rotate(
+            glm::mat4(1.0f), glm::radians(degree), glm::vec3(0.0, 1.0, 0.0)
+         );
+        //lightPos = rotate * lightPos;
+        //lightPos.x = sinf(glfwGetTime()) * 2.0f;
+        //lightPos.z = cosf(glfwGetTime()) * 2.0f;
+
+        glm::vec3 lightColor;
+        lightColor.x = sin(glfwGetTime() * 2.0f);
+        lightColor.y = sin(glfwGetTime() * 0.7f);
+        lightColor.z = sin(glfwGetTime() * 1.3f);
+
+        glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
+        glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);
+
         lightingShader.Use();
-        lightingShader.SetVec3("objectColor", 1.0f, 0.5f, 0.31f);
-        lightingShader.SetVec3("lightColor", 1.0f, 1.0f, 1.0f);
-        lightingShader.SetVec3("lightPos", lightPos);
+        lightingShader.SetVec3("material.ambient", 1.0f, 0.5f, 0.31f);
+        lightingShader.SetVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
+        lightingShader.SetVec3("material.specular", 0.5f, 0.5f, 0.5f);
+        lightingShader.SetFloat("material.shininess", 32.0f);
+        lightingShader.SetVec3("light.ambient", ambientColor);
+        lightingShader.SetVec3("light.diffuse", diffuseColor);
+        lightingShader.SetVec3("light.specular", 1.0f, 1.0f, 1.0f);
+        lightingShader.SetVec3("light.position", lightPos);
         lightingShader.SetVec3("viewPos", camera.Position);
         lightingShader.SetMat4("projection", projection);
         lightingShader.SetMat4("view", view);
