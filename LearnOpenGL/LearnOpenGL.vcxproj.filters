@@ -52,6 +52,8 @@
     <None Include="shaders\color.frag" />
     <None Include="shaders\texture_light.vs" />
     <None Include="shaders\texture_light.frag" />
+    <None Include="shaders\directional_light.vs" />
+    <None Include="shaders\directional_light.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">

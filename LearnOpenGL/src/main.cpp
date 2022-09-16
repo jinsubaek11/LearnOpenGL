@@ -64,7 +64,7 @@ int main()
     }
 
     Shader lightCubeShader("./shaders/simple.vs", "./shaders/simple.frag");
-    Shader lightingShader("./shaders/texture_light.vs", "./shaders/texture_light.frag");
+    Shader lightingShader("./shaders/texture_light.vs", "./shaders/directional_light.frag");
    //Shader ourTexShader("./shaders/texture.vs", "./shaders/texture.frag");
 
     float vertices[] = {
@@ -187,6 +187,7 @@ int main()
         lightingShader.Use();
         lightingShader.SetFloat("material.shininess", 32.0f);
 
+        lightingShader.SetVec3("light.direction", -0.2f, -1.0f, -0.3f);
         lightingShader.SetVec3("light.ambient", 0.2f, 0.2f, 0.2f);
         lightingShader.SetVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
         lightingShader.SetVec3("light.specular", 1.0f, 1.0f, 1.0f);
@@ -195,7 +196,6 @@ int main()
         lightingShader.SetVec3("viewPos", camera.Position);
         lightingShader.SetMat4("projection", projection);
         lightingShader.SetMat4("view", view);
-        lightingShader.SetMat4("model", model);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseMap);
@@ -204,12 +204,21 @@ int main()
         glActiveTexture(GL_TEXTURE0 + 2);
         glBindTexture(GL_TEXTURE_2D, emissionMap);
 
-        glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 6 * 6);
+        for (unsigned int i = 0; i < 10; i++)
+        {
+            model = glm::translate(glm::mat4(1.0f), cubePositions[i]);
+            float angle = 20.0f * i;
+            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+
+            lightingShader.SetMat4("model", model);
+
+            glBindVertexArray(VAO);
+            glDrawArrays(GL_TRIANGLES, 0, 6 * 6);
+        }
 
         lightCubeShader.Use();
 
-        model = glm::translate(model, lightPos);
+        model = glm::translate(glm::mat4(1.0f), lightPos);
         model = glm::scale(model, glm::vec3(0.2f));
         lightCubeShader.SetMat4("projection", projection);
         lightCubeShader.SetMat4("view", view);
