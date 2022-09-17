@@ -64,7 +64,7 @@ int main()
     }
 
     Shader lightCubeShader("./shaders/simple.vs", "./shaders/simple.frag");
-    Shader lightingShader("./shaders/texture_light.vs", "./shaders/point_light.frag");
+    Shader lightingShader("./shaders/texture_light.vs", "./shaders/spot_light.frag");
    //Shader ourTexShader("./shaders/texture.vs", "./shaders/texture.frag");
 
     float vertices[] = {
@@ -187,14 +187,18 @@ int main()
         lightingShader.Use();
         lightingShader.SetFloat("material.shininess", 32.0f);
 
-        lightingShader.SetVec3("light.direction", -0.2f, -1.0f, -0.3f);
+        lightingShader.SetVec3("light.position", camera.Position);
+        lightingShader.SetVec3("light.direction", camera.Front);
+        lightingShader.SetFloat("light.innerCutoff", glm::cos(glm::radians(12.5f)));
+        lightingShader.SetFloat("light.outerCutoff", glm::cos(glm::radians(16.5f)));
+
         lightingShader.SetVec3("light.ambient", 0.2f, 0.2f, 0.2f);
         lightingShader.SetVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
         lightingShader.SetVec3("light.specular", 1.0f, 1.0f, 1.0f);
+
         lightingShader.SetFloat("light.constant", 1.0f);
         lightingShader.SetFloat("light.linear", 0.09f);
         lightingShader.SetFloat("light.quadratic", 0.032f);
-        lightingShader.SetVec3("light.position", lightPos);
 
         lightingShader.SetVec3("viewPos", camera.Position);
         lightingShader.SetMat4("projection", projection);
