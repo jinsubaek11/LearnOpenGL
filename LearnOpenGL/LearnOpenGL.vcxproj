@@ -172,6 +172,8 @@
     <None Include="shaders\color.vs" />
     <None Include="shaders\directional_light.frag" />
     <None Include="shaders\directional_light.vs" />
+    <None Include="shaders\lights.frag" />
+    <None Include="shaders\lights.vs" />
     <None Include="shaders\point_light.frag" />
     <None Include="shaders\point_light.vs" />
     <None Include="shaders\simple.frag" />
