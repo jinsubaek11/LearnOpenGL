@@ -8,11 +8,11 @@ struct Vertex
 {
 	glm::vec3 Position;
 	glm::vec3 Normal;
-	glm::vec3 TexCoords;
+	glm::vec2 TexCoords;
 	glm::vec3 Tangent;
-	glm::vec3 BiTangent;
+	glm::vec3 Bitangent;
 
-	int m_BoneIds[MAX_BONE_INFLUENCE];
+	int m_BoneIDs[MAX_BONE_INFLUENCE];
 	float m_Weights[MAX_BONE_INFLUENCE];
 };
 

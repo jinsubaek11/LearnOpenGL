@@ -3,6 +3,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/vs,c++
 # Edit at https://www.toptal.com/developers/gitignore?templates=vs,c++
 
+models/
+*.blend
+
 ### C++ ###
 # Prerequisites
 *.d

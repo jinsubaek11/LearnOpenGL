@@ -54,6 +54,9 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.props" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\MeshContentTask.props" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\ShaderGraphContentTask.props" />
   </ImportGroup>
   <ImportGroup Label="Shared">
   </ImportGroup>
@@ -98,7 +101,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\assimp\lib;$(SolutionDir)Dependencies\GLFW\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;User32.lib;Shell32.lib;Gdi32.lib;assimp-vc143-mtd.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;User32.lib;Shell32.lib;Gdi32.lib;assimp-vc143-mtd.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -117,7 +120,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\assimp\lib;$(SolutionDir)Dependencies\GLFW\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;User32.lib;Shell32.lib;Gdi32.lib;assimp-vc143-mtd.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;User32.lib;Shell32.lib;Gdi32.lib;assimp-vc143-mtd.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -132,7 +135,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\assimp\lib;$(SolutionDir)Dependencies\GLFW\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;User32.lib;Shell32.lib;Gdi32.lib;assimp-vc143-mtd.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;User32.lib;Shell32.lib;Gdi32.lib;assimp-vc143-mtd.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -151,10 +154,11 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\assimp\lib;$(SolutionDir)Dependencies\GLFW\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;User32.lib;Shell32.lib;Gdi32.lib;assimp-vc143-mtd.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;User32.lib;Shell32.lib;Gdi32.lib;assimp-vc143-mtd.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Model.cpp" />
     <ClCompile Include="src\Mesh.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\Shader.cpp" />
@@ -162,6 +166,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Model.h" />
     <ClInclude Include="src\Mesh.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\common.h" />
@@ -170,33 +175,63 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
+    <None Include="shaders\blending.frag" />
+    <None Include="shaders\blending.vs" />
     <None Include="shaders\color.frag" />
     <None Include="shaders\color.vs" />
+    <None Include="shaders\depth_testing.frag" />
+    <None Include="shaders\depth_testing.vs" />
     <None Include="shaders\directional_light.frag" />
     <None Include="shaders\directional_light.vs" />
     <None Include="shaders\lights.frag" />
     <None Include="shaders\lights.vs" />
+    <None Include="shaders\model_loading.frag" />
+    <None Include="shaders\model_loading.vs" />
     <None Include="shaders\point_light.frag" />
     <None Include="shaders\point_light.vs" />
     <None Include="shaders\simple.frag" />
     <None Include="shaders\simple.vs" />
     <None Include="shaders\spot_light.frag" />
     <None Include="shaders\spot_light.vs" />
+    <None Include="shaders\stencil_single_color.frag" />
+    <None Include="shaders\stencil_test.frag" />
+    <None Include="shaders\stencil_test.vs" />
     <None Include="shaders\texture.frag" />
     <None Include="shaders\texture.vs" />
     <None Include="shaders\texture_light.frag" />
     <None Include="shaders\texture_light.vs" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="models\backpack\ao.jpg" />
+    <Image Include="models\backpack\diffuse.jpg" />
+    <Image Include="models\backpack\normal.png" />
+    <Image Include="models\backpack\roughness.jpg" />
+    <Image Include="models\backpack\specular.jpg" />
+    <Image Include="model\ao.jpg" />
+    <Image Include="model\diffuse.jpg" />
+    <Image Include="model\normal.png" />
+    <Image Include="model\roughness.jpg" />
+    <Image Include="model\specular.jpg" />
     <Image Include="textures\awesomeface.png" />
+    <Image Include="textures\blending_transparent_window.png" />
     <Image Include="textures\container.jpg" />
     <Image Include="textures\container2.png" />
     <Image Include="textures\container2_specular.png" />
+    <Image Include="textures\grass.png" />
     <Image Include="textures\lighting_maps_specular_color.png" />
+    <Image Include="textures\marble.jpg" />
     <Image Include="textures\matrix.jpg" />
+    <Image Include="textures\metal.png" />
     <Image Include="textures\wall.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="models\backpack\source_attribution.txt" />
+    <Text Include="model\source_attribution.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\MeshContentTask.targets" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\ShaderGraphContentTask.targets" />
   </ImportGroup>
 </Project>

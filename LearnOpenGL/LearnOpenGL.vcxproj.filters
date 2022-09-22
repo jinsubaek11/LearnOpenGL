@@ -30,6 +30,9 @@
     <ClCompile Include="src\Mesh.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="src\Model.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -45,6 +48,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="src\Mesh.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Model.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -66,6 +72,15 @@
     <None Include="shaders\spot_light.vs" />
     <None Include="shaders\lights.vs" />
     <None Include="shaders\lights.frag" />
+    <None Include="shaders\model_loading.vs" />
+    <None Include="shaders\model_loading.frag" />
+    <None Include="shaders\depth_testing.vs" />
+    <None Include="shaders\depth_testing.frag" />
+    <None Include="shaders\stencil_test.vs" />
+    <None Include="shaders\stencil_test.frag" />
+    <None Include="shaders\stencil_single_color.frag" />
+    <None Include="shaders\blending.vs" />
+    <None Include="shaders\blending.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">
@@ -89,5 +104,51 @@
     <Image Include="textures\matrix.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="model\ao.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="model\diffuse.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="model\normal.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="model\roughness.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="model\specular.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="models\backpack\ao.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="models\backpack\diffuse.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="models\backpack\normal.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="models\backpack\roughness.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="models\backpack\specular.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\marble.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\metal.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\blending_transparent_window.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\grass.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="model\source_attribution.txt" />
+    <Text Include="models\backpack\source_attribution.txt" />
   </ItemGroup>
 </Project>
