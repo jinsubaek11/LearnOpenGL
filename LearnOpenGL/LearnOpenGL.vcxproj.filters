@@ -81,6 +81,10 @@
     <None Include="shaders\stencil_single_color.frag" />
     <None Include="shaders\blending.vs" />
     <None Include="shaders\blending.frag" />
+    <None Include="shaders\framebuffers.vs" />
+    <None Include="shaders\framebuffers.frag" />
+    <None Include="shaders\framebuffers_screen.vs" />
+    <None Include="shaders\framebuffers_screen.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">

@@ -183,6 +183,10 @@
     <None Include="shaders\depth_testing.vs" />
     <None Include="shaders\directional_light.frag" />
     <None Include="shaders\directional_light.vs" />
+    <None Include="shaders\framebuffers.frag" />
+    <None Include="shaders\framebuffers.vs" />
+    <None Include="shaders\framebuffers_screen.frag" />
+    <None Include="shaders\framebuffers_screen.vs" />
     <None Include="shaders\lights.frag" />
     <None Include="shaders\lights.vs" />
     <None Include="shaders\model_loading.frag" />
