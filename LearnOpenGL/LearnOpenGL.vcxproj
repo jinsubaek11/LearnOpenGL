@@ -175,10 +175,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
+    <None Include="models\backpack\backpack.mtl" />
     <None Include="shaders\blending.frag" />
     <None Include="shaders\blending.vs" />
     <None Include="shaders\color.frag" />
     <None Include="shaders\color.vs" />
+    <None Include="shaders\cubemap.frag" />
+    <None Include="shaders\cubemap.vert" />
+    <None Include="shaders\cubemapReflect.frag" />
+    <None Include="shaders\cubemapReflect.vert" />
+    <None Include="shaders\cubemapRefract.frag" />
+    <None Include="shaders\cubemapRefract.vert" />
     <None Include="shaders\depth_testing.frag" />
     <None Include="shaders\depth_testing.vs" />
     <None Include="shaders\directional_light.frag" />
@@ -195,6 +202,8 @@
     <None Include="shaders\point_light.vs" />
     <None Include="shaders\simple.frag" />
     <None Include="shaders\simple.vs" />
+    <None Include="shaders\skybox.frag" />
+    <None Include="shaders\skybox.vert" />
     <None Include="shaders\spot_light.frag" />
     <None Include="shaders\spot_light.vs" />
     <None Include="shaders\stencil_single_color.frag" />
@@ -217,20 +226,31 @@
     <Image Include="model\roughness.jpg" />
     <Image Include="model\specular.jpg" />
     <Image Include="textures\awesomeface.png" />
+    <Image Include="textures\back.jpg" />
     <Image Include="textures\blending_transparent_window.png" />
+    <Image Include="textures\bottom.jpg" />
     <Image Include="textures\container.jpg" />
     <Image Include="textures\container2.png" />
     <Image Include="textures\container2_specular.png" />
+    <Image Include="textures\front.jpg" />
     <Image Include="textures\grass.png" />
+    <Image Include="textures\left.jpg" />
     <Image Include="textures\lighting_maps_specular_color.png" />
     <Image Include="textures\marble.jpg" />
     <Image Include="textures\matrix.jpg" />
     <Image Include="textures\metal.png" />
+    <Image Include="textures\right.jpg" />
+    <Image Include="textures\top.jpg" />
     <Image Include="textures\wall.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="models\backpack\source_attribution.txt" />
     <Text Include="model\source_attribution.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="models\backpack\backpack.obj">
+      <FileType>Document</FileType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

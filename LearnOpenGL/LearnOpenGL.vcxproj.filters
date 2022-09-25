@@ -85,6 +85,16 @@
     <None Include="shaders\framebuffers.frag" />
     <None Include="shaders\framebuffers_screen.vs" />
     <None Include="shaders\framebuffers_screen.frag" />
+    <None Include="shaders\skybox.vert" />
+    <None Include="shaders\skybox.frag" />
+    <None Include="shaders\cubemap.vert" />
+    <None Include="shaders\cubemap.frag" />
+    <None Include="shaders\cubemapReflect.vert" />
+    <None Include="shaders\cubemapReflect.frag" />
+    <None Include="models\backpack\backpack.mtl" />
+    <None Include="models\backpack\backpack.obj" />
+    <None Include="shaders\cubemapRefract.vert" />
+    <None Include="shaders\cubemapRefract.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">
@@ -148,6 +158,24 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="textures\grass.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\back.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\bottom.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\front.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\left.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\right.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\top.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>
