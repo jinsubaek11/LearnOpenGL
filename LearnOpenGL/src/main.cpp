@@ -125,12 +125,12 @@ int main()
     };
     float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
         // positions   // texCoords
-        -1.0f,  1.0f,  0.0f, 1.0f,
-        -1.0f, -1.0f,  0.0f, 0.0f,
-         1.0f, -1.0f,  1.0f, 0.0f,
+        -1.0f,  1.0f,  -1.0f, 1.0f,
+        -1.0f, -1.0f,  -1.0f, -1.0f,
+         1.0f, -1.0f,  1.0f, -1.0f,
 
-        -1.0f,  1.0f,  0.0f, 1.0f,
-         1.0f, -1.0f,  1.0f, 0.0f,
+        -1.0f,  1.0f,  -1.0f, 1.0f,
+         1.0f, -1.0f,  1.0f, -1.0f,
          1.0f,  1.0f,  1.0f, 1.0f
     };
 
@@ -180,6 +180,10 @@ int main()
 
     screenShader.Use();
     screenShader.SetInt("screenTexture", 0);
+    screenShader.SetInt("screenTexture1", 1);
+    screenShader.SetInt("screenTexture2", 2);
+    screenShader.SetInt("screenTexture3", 3);
+
 
     unsigned int framebuffer;
     glGenFramebuffers(1, &framebuffer);
@@ -205,6 +209,78 @@ int main()
     }
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
+    unsigned int framebuffer1;
+    glGenFramebuffers(1, &framebuffer1);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1);
+
+    unsigned int textureColorbuffer1;
+    glGenTextures(1, &textureColorbuffer1);
+    glBindTexture(GL_TEXTURE_2D, textureColorbuffer1);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer1, 0);
+
+    unsigned int rbo1;
+    glGenRenderbuffers(1, &rbo1);
+    glBindRenderbuffer(GL_RENDERBUFFER, rbo1);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, SCR_WIDTH, SCR_HEIGHT);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo1);
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete" << std::endl;
+    }
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    unsigned int framebuffer2;
+    glGenFramebuffers(1, &framebuffer2);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer2);
+
+    unsigned int textureColorbuffer2;
+    glGenTextures(1, &textureColorbuffer2);
+    glBindTexture(GL_TEXTURE_2D, textureColorbuffer2);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer2, 0);
+
+    unsigned int rbo2;
+    glGenRenderbuffers(1, &rbo2);
+    glBindRenderbuffer(GL_RENDERBUFFER, rbo2);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, SCR_WIDTH, SCR_HEIGHT);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo2);
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete" << std::endl;
+    }
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    unsigned int framebuffer3;
+    glGenFramebuffers(1, &framebuffer3);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer3);
+
+    unsigned int textureColorbuffer3;
+    glGenTextures(1, &textureColorbuffer3);
+    glBindTexture(GL_TEXTURE_2D, textureColorbuffer3);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer3, 0);
+
+    unsigned int rbo3;
+    glGenRenderbuffers(1, &rbo3);
+    glBindRenderbuffer(GL_RENDERBUFFER, rbo3);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, SCR_WIDTH, SCR_HEIGHT);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo3);
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete" << std::endl;
+    }
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
@@ -219,6 +295,8 @@ int main()
 
         // render
         // ------
+        
+        //--------------------------------------
         glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
         glEnable(GL_DEPTH_TEST);
 
@@ -228,6 +306,7 @@ int main()
         shader.Use();
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         glm::mat4 view = camera.GetViewMatrix();
+        //view = glm::rotate(camera.GetViewMatrix(), glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.0));
         glm::mat4 model = glm::mat4(1.0f);
         shader.SetMat4("projection", projection);
         shader.SetMat4("view", view);
@@ -248,6 +327,103 @@ int main()
         model = glm::mat4(1.0f);
         shader.SetMat4("model", model);
         glDrawArrays(GL_TRIANGLES, 0, 6);
+        //--------------------------------------
+
+        //--------------------------------------
+        glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1);
+        glEnable(GL_DEPTH_TEST);
+
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+
+        shader.Use();
+        projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        view = glm::rotate(camera.GetViewMatrix(), glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
+        model = glm::mat4(1.0f);
+        shader.SetMat4("projection", projection);
+        shader.SetMat4("view", view);
+        // cubes
+        glBindVertexArray(cubeVAO);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, cubeTexture);
+        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
+        shader.SetMat4("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
+        shader.SetMat4("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        // floor
+        glBindVertexArray(planeVAO);
+        glBindTexture(GL_TEXTURE_2D, floorTexture);
+        model = glm::mat4(1.0f);
+        shader.SetMat4("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+        //--------------------------------------
+
+        //--------------------------------------
+        glBindFramebuffer(GL_FRAMEBUFFER, framebuffer2);
+        glEnable(GL_DEPTH_TEST);
+
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+
+        shader.Use();
+        projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        view = glm::rotate(camera.GetViewMatrix(), glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.0));
+        model = glm::mat4(1.0f);
+        shader.SetMat4("projection", projection);
+        shader.SetMat4("view", view);
+        // cubes
+        glBindVertexArray(cubeVAO);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, cubeTexture);
+        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
+        shader.SetMat4("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
+        shader.SetMat4("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        // floor
+        glBindVertexArray(planeVAO);
+        glBindTexture(GL_TEXTURE_2D, floorTexture);
+        model = glm::mat4(1.0f);
+        shader.SetMat4("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+        //--------------------------------------
+
+        //--------------------------------------
+        glBindFramebuffer(GL_FRAMEBUFFER, framebuffer3);
+        glEnable(GL_DEPTH_TEST);
+
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+
+        shader.Use();
+        projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        view = glm::rotate(camera.GetViewMatrix(), glm::radians(270.0f), glm::vec3(0.0, 1.0, 0.0));
+        model = glm::mat4(1.0f);
+        shader.SetMat4("projection", projection);
+        shader.SetMat4("view", view);
+        // cubes
+        glBindVertexArray(cubeVAO);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, cubeTexture);
+        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
+        shader.SetMat4("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
+        shader.SetMat4("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        // floor
+        glBindVertexArray(planeVAO);
+        glBindTexture(GL_TEXTURE_2D, floorTexture);
+        model = glm::mat4(1.0f);
+        shader.SetMat4("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+        //--------------------------------------
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         glDisable(GL_DEPTH_TEST);
@@ -257,7 +433,16 @@ int main()
 
         screenShader.Use();
         glBindVertexArray(quadVAO);
+
+        glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, textureColorbuffer1);
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, textureColorbuffer2);
+        glActiveTexture(GL_TEXTURE3);
+        glBindTexture(GL_TEXTURE_2D, textureColorbuffer3);
+
         glDrawArrays(GL_TRIANGLES, 0, 6);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)

@@ -3,6 +3,9 @@
 in vec2 TexCoords;
 
 uniform sampler2D screenTexture;
+uniform sampler2D screenTexture1;
+uniform sampler2D screenTexture2;
+uniform sampler2D screenTexture3;
 
 out vec4 color;
 
@@ -54,11 +57,34 @@ void main()
 		col += sampleTex[i] * kernel3[i];
 	}
 
-	color = vec4(col, 1.0);
+	//color = vec4(col, 1.0);
 
 	//vec3 col = 1.0 - texture(screenTexture, TexCoords).rgb;
-	//vec3 col = texture(screenTexture, TexCoords).rgb;
+	//col = texture(screenTexture, TexCoords).rgb;
 	//float average = 0.2126 * col.r + 0.7152 * col.g + 0.0722 * col.b;
 	//color = vec4(col, 1.0);
 	//color = vec4(vec3(average), 1.0);
+
+	//color = vec4(1.0, 1.0, 0.0, 1.0);
+
+	if (TexCoords.x < 0 && TexCoords.y < 0)
+	{
+		col = texture(screenTexture, TexCoords).rgb;
+		color = vec4(col, 1.0);
+	}
+	else if (TexCoords.x < 1 && TexCoords.y < 0)
+	{
+		col = texture(screenTexture1, TexCoords).rgb;
+		color = vec4(col, 1.0);
+	}
+	else if (TexCoords.x < 0 && TexCoords.y < 1)
+	{
+		col = texture(screenTexture2, TexCoords).rgb;
+		color = vec4(col, 1.0);
+	}
+	else if (TexCoords.x < 1 && TexCoords.y < 1)
+	{
+		col = texture(screenTexture3, TexCoords).rgb;
+		color = vec4(col, 1.0);
+	}
 }
