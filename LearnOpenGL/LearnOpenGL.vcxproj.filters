@@ -95,6 +95,11 @@
     <None Include="models\backpack\backpack.obj" />
     <None Include="shaders\cubemapRefract.vert" />
     <None Include="shaders\cubemapRefract.frag" />
+    <None Include="shaders\advanced_glsl.vert" />
+    <None Include="shaders\advanced_glsl_red.frag" />
+    <None Include="shaders\advanced_glsl_yellow.frag" />
+    <None Include="shaders\advanced_glsl_green.frag" />
+    <None Include="shaders\advanced_glsl_blue.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">
