@@ -103,6 +103,9 @@
     <None Include="shaders\points.vert" />
     <None Include="shaders\points.frag" />
     <None Include="shaders\points.geom" />
+    <None Include="shaders\geometry.vert" />
+    <None Include="shaders\geometry.frag" />
+    <None Include="shaders\geometry.geom" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">
