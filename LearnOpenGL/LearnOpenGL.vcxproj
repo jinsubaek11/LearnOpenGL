@@ -203,8 +203,13 @@
     <None Include="shaders\geometry.vert" />
     <None Include="shaders\lights.frag" />
     <None Include="shaders\lights.vs" />
+    <None Include="shaders\model_default.frag" />
+    <None Include="shaders\model_default.vert" />
     <None Include="shaders\model_loading.frag" />
     <None Include="shaders\model_loading.vs" />
+    <None Include="shaders\normal_visualization.frag" />
+    <None Include="shaders\normal_visualization.geom" />
+    <None Include="shaders\normal_visualization.vert" />
     <None Include="shaders\points.frag" />
     <None Include="shaders\points.geom" />
     <None Include="shaders\points.vert" />

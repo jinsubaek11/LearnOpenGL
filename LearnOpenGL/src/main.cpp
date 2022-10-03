@@ -67,7 +67,8 @@ int main()
 
     glEnable(GL_DEPTH_TEST);
 
-    Shader shader("shaders/geometry.vert", "shaders/geometry.frag", "shaders/geometry.geom");
+    Shader shader("shaders/model_default.vert", "shaders/model_default.frag");
+    Shader normalShader("shaders/normal_visualization.vert", "shaders/normal_visualization.frag", "shaders/normal_visualization.geom");
 
     Model backpack("models/backpack/backpack.obj");
 
@@ -122,9 +123,14 @@ int main()
         shader.SetMat4("view", view);
         shader.SetMat4("model", model);
 
-        shader.SetFloat("time", static_cast<float>(glfwGetTime()));
-
         backpack.Draw(shader);
+
+        normalShader.Use();
+        normalShader.SetMat4("projection", projection);
+        normalShader.SetMat4("view", view);
+        normalShader.SetMat4("model", model);
+
+        backpack.Draw(normalShader);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
