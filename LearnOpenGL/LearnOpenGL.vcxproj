@@ -176,6 +176,8 @@
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include="models\backpack\backpack.mtl" />
+    <None Include="models\planet\planet.mtl" />
+    <None Include="models\rock\rock.mtl" />
     <None Include="shaders\advanced_glsl.vert" />
     <None Include="shaders\advanced_glsl_blue.frag" />
     <None Include="shaders\advanced_glsl_green.frag" />
@@ -201,6 +203,8 @@
     <None Include="shaders\geometry.frag" />
     <None Include="shaders\geometry.geom" />
     <None Include="shaders\geometry.vert" />
+    <None Include="shaders\instancing.frag" />
+    <None Include="shaders\instancing.vert" />
     <None Include="shaders\lights.frag" />
     <None Include="shaders\lights.vs" />
     <None Include="shaders\model_default.frag" />
@@ -236,6 +240,8 @@
     <Image Include="models\backpack\normal.png" />
     <Image Include="models\backpack\roughness.jpg" />
     <Image Include="models\backpack\specular.jpg" />
+    <Image Include="models\planet\mars.png" />
+    <Image Include="models\rock\rock.png" />
     <Image Include="model\ao.jpg" />
     <Image Include="model\diffuse.jpg" />
     <Image Include="model\normal.png" />
@@ -261,12 +267,17 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="models\backpack\source_attribution.txt" />
+    <Text Include="models\planet\source.txt" />
     <Text Include="model\source_attribution.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="models\backpack\backpack.obj">
       <FileType>Document</FileType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="models\planet\planet.obj" />
+    <Object Include="models\rock\rock.obj" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

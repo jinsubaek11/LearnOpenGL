@@ -111,6 +111,10 @@
     <None Include="shaders\normal_visualization.geom" />
     <None Include="shaders\model_default.vert" />
     <None Include="shaders\model_default.frag" />
+    <None Include="shaders\instancing.vert" />
+    <None Include="shaders\instancing.frag" />
+    <None Include="models\planet\planet.mtl" />
+    <None Include="models\rock\rock.mtl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">
@@ -194,9 +198,20 @@
     <Image Include="textures\top.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="models\planet\mars.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="models\rock\rock.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="model\source_attribution.txt" />
     <Text Include="models\backpack\source_attribution.txt" />
+    <Text Include="models\planet\source.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="models\planet\planet.obj" />
+    <Object Include="models\rock\rock.obj" />
   </ItemGroup>
 </Project>
