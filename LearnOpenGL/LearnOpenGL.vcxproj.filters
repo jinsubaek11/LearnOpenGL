@@ -115,6 +115,12 @@
     <None Include="shaders\instancing.frag" />
     <None Include="models\planet\planet.mtl" />
     <None Include="models\rock\rock.mtl" />
+    <None Include="shaders\asteroids.vert" />
+    <None Include="shaders\asteroids.frag" />
+    <None Include="shaders\planet.vert" />
+    <None Include="shaders\planet.frag" />
+    <None Include="models\planet\planet.obj" />
+    <None Include="models\rock\rock.obj" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">
@@ -209,9 +215,5 @@
     <Text Include="model\source_attribution.txt" />
     <Text Include="models\backpack\source_attribution.txt" />
     <Text Include="models\planet\source.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="models\planet\planet.obj" />
-    <Object Include="models\rock\rock.obj" />
   </ItemGroup>
 </Project>

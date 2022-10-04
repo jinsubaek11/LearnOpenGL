@@ -182,6 +182,8 @@
     <None Include="shaders\advanced_glsl_blue.frag" />
     <None Include="shaders\advanced_glsl_green.frag" />
     <None Include="shaders\advanced_glsl_yellow.frag" />
+    <None Include="shaders\asteroids.frag" />
+    <None Include="shaders\asteroids.vert" />
     <None Include="shaders\blending.frag" />
     <None Include="shaders\blending.vs" />
     <None Include="shaders\color.frag" />
@@ -214,6 +216,8 @@
     <None Include="shaders\normal_visualization.frag" />
     <None Include="shaders\normal_visualization.geom" />
     <None Include="shaders\normal_visualization.vert" />
+    <None Include="shaders\planet.frag" />
+    <None Include="shaders\planet.vert" />
     <None Include="shaders\points.frag" />
     <None Include="shaders\points.geom" />
     <None Include="shaders\points.vert" />
@@ -276,8 +280,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Object Include="models\planet\planet.obj" />
-    <Object Include="models\rock\rock.obj" />
+    <None Include="models\planet\planet.obj">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="models\rock\rock.obj">
+      <FileType>Document</FileType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
