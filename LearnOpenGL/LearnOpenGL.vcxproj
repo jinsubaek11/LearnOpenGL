@@ -178,10 +178,14 @@
     <None Include="models\backpack\backpack.mtl" />
     <None Include="models\planet\planet.mtl" />
     <None Include="models\rock\rock.mtl" />
+    <None Include="shaders\aa_post.frag" />
+    <None Include="shaders\aa_post.vert" />
     <None Include="shaders\advanced_glsl.vert" />
     <None Include="shaders\advanced_glsl_blue.frag" />
     <None Include="shaders\advanced_glsl_green.frag" />
     <None Include="shaders\advanced_glsl_yellow.frag" />
+    <None Include="shaders\anti_aliasing.frag" />
+    <None Include="shaders\anti_aliasing.vert" />
     <None Include="shaders\asteroids.frag" />
     <None Include="shaders\asteroids.vert" />
     <None Include="shaders\blending.frag" />

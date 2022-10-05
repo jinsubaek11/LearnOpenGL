@@ -121,6 +121,10 @@
     <None Include="shaders\planet.frag" />
     <None Include="models\planet\planet.obj" />
     <None Include="models\rock\rock.obj" />
+    <None Include="shaders\anti_aliasing.vert" />
+    <None Include="shaders\anti_aliasing.frag" />
+    <None Include="shaders\aa_post.vert" />
+    <None Include="shaders\aa_post.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">
