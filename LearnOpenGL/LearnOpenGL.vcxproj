@@ -184,6 +184,8 @@
     <None Include="shaders\advanced_glsl_blue.frag" />
     <None Include="shaders\advanced_glsl_green.frag" />
     <None Include="shaders\advanced_glsl_yellow.frag" />
+    <None Include="shaders\advanced_lighting.frag" />
+    <None Include="shaders\advanced_lighting.vert" />
     <None Include="shaders\anti_aliasing.frag" />
     <None Include="shaders\anti_aliasing.vert" />
     <None Include="shaders\asteroids.frag" />
@@ -272,6 +274,7 @@
     <Image Include="textures\right.jpg" />
     <Image Include="textures\top.jpg" />
     <Image Include="textures\wall.jpg" />
+    <Image Include="textures\wood.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="models\backpack\source_attribution.txt" />
