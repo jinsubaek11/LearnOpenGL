@@ -208,6 +208,8 @@
     <None Include="shaders\framebuffers.vs" />
     <None Include="shaders\framebuffers_screen.frag" />
     <None Include="shaders\framebuffers_screen.vs" />
+    <None Include="shaders\gamma_correction.frag" />
+    <None Include="shaders\gamma_correction.vert" />
     <None Include="shaders\geometry.frag" />
     <None Include="shaders\geometry.geom" />
     <None Include="shaders\geometry.vert" />

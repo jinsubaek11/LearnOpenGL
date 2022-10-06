@@ -127,6 +127,8 @@
     <None Include="shaders\aa_post.frag" />
     <None Include="shaders\advanced_lighting.vert" />
     <None Include="shaders\advanced_lighting.frag" />
+    <None Include="shaders\gamma_correction.vert" />
+    <None Include="shaders\gamma_correction.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">
