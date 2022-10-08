@@ -129,6 +129,17 @@
     <None Include="shaders\advanced_lighting.frag" />
     <None Include="shaders\gamma_correction.vert" />
     <None Include="shaders\gamma_correction.frag" />
+    <None Include="shaders\shadow_mapping.vert" />
+    <None Include="shaders\shadow_mapping.frag" />
+    <None Include="shaders\debug_quad.vert" />
+    <None Include="shaders\debug_quad.frag" />
+    <None Include="shaders\shadow_mapping_2.vert" />
+    <None Include="shaders\shadow_mapping_2.frag" />
+    <None Include="shaders\point_shadow.vert" />
+    <None Include="shaders\point_shadow.frag" />
+    <None Include="shaders\point_shadow_depth.vert" />
+    <None Include="shaders\point_shadow_depth.frag" />
+    <None Include="shaders\point_shadow_depth.geom" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">
