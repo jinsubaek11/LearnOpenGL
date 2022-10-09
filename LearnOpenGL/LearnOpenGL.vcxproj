@@ -223,6 +223,8 @@
     <None Include="shaders\model_default.vert" />
     <None Include="shaders\model_loading.frag" />
     <None Include="shaders\model_loading.vs" />
+    <None Include="shaders\normal_mapping.frag" />
+    <None Include="shaders\normal_mapping.vert" />
     <None Include="shaders\normal_visualization.frag" />
     <None Include="shaders\normal_visualization.geom" />
     <None Include="shaders\normal_visualization.vert" />
@@ -274,6 +276,8 @@
     <Image Include="textures\back.jpg" />
     <Image Include="textures\blending_transparent_window.png" />
     <Image Include="textures\bottom.jpg" />
+    <Image Include="textures\brickwall.jpg" />
+    <Image Include="textures\brickwall_normal.jpg" />
     <Image Include="textures\container.jpg" />
     <Image Include="textures\container2.png" />
     <Image Include="textures\container2_specular.png" />
