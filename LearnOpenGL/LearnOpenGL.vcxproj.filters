@@ -144,6 +144,10 @@
     <None Include="shaders\normal_mapping.frag" />
     <None Include="shaders\parallax_mapping.vert" />
     <None Include="shaders\parallax_mapping.frag" />
+    <None Include="shaders\hdr.vert" />
+    <None Include="shaders\hdr.frag" />
+    <None Include="shaders\hdr_lighting.vert" />
+    <None Include="shaders\hdr_lighting.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">

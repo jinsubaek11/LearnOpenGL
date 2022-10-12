@@ -215,6 +215,10 @@
     <None Include="shaders\geometry.frag" />
     <None Include="shaders\geometry.geom" />
     <None Include="shaders\geometry.vert" />
+    <None Include="shaders\hdr.frag" />
+    <None Include="shaders\hdr.vert" />
+    <None Include="shaders\hdr_lighting.frag" />
+    <None Include="shaders\hdr_lighting.vert" />
     <None Include="shaders\instancing.frag" />
     <None Include="shaders\instancing.vert" />
     <None Include="shaders\lights.frag" />
