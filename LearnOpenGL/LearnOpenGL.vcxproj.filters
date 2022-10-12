@@ -142,6 +142,8 @@
     <None Include="shaders\point_shadow_depth.geom" />
     <None Include="shaders\normal_mapping.vert" />
     <None Include="shaders\normal_mapping.frag" />
+    <None Include="shaders\parallax_mapping.vert" />
+    <None Include="shaders\parallax_mapping.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">

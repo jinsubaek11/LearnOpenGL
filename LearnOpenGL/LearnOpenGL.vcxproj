@@ -228,6 +228,8 @@
     <None Include="shaders\normal_visualization.frag" />
     <None Include="shaders\normal_visualization.geom" />
     <None Include="shaders\normal_visualization.vert" />
+    <None Include="shaders\parallax_mapping.frag" />
+    <None Include="shaders\parallax_mapping.vert" />
     <None Include="shaders\planet.frag" />
     <None Include="shaders\planet.vert" />
     <None Include="shaders\points.frag" />

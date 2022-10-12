@@ -33,6 +33,7 @@ bool gammaEnabled = false;
 bool gammaKeyPressed = false;
 bool shadows = false;
 bool shadowsKeyPressed = false;
+float heightScale = 0.05f;
 
 unsigned int planeVAO;
 
@@ -76,7 +77,7 @@ int main()
 
     glEnable(GL_DEPTH_TEST);
 
-    Shader shader("shaders/normal_mapping.vert", "shaders/normal_mapping.frag");
+    Shader shader("shaders/parallax_mapping.vert", "shaders/parallax_mapping.frag");
     
     float planeVertices[] = {
         // positions          // normal        // texcoords
@@ -169,12 +170,14 @@ int main()
     glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(11 * sizeof(float)));
     glBindVertexArray(0);
 
-    unsigned int diffuseMap = loadTexture("textures/brickwall.jpg", false);
-    unsigned int normalMap = loadTexture("textures/brickwall_normal.jpg", false);
+    unsigned int diffuseMap = loadTexture("textures/bricks2.jpg", false);
+    unsigned int normalMap = loadTexture("textures/bricks2_normal.jpg", false);
+    unsigned int depthMap = loadTexture("textures/bricks2_disp.jpg", false);
 
     shader.Use();
     shader.SetInt("diffuseMap", 0);
     shader.SetInt("normalMap", 1);
+    shader.SetInt("depthMap", 2);
 
     //glm::vec3 lightPos = glm::vec3(-5.0, 5.0, 5.0);
     glm::vec3 lightPos(0.5f, 1.0f, 0.3f);
@@ -200,7 +203,7 @@ int main()
         glm::mat4 view = camera.GetViewMatrix();
         //glm::mat4 model = glm::rotate(glm::mat4(1.0), glm::radians(-90.f), glm::vec3(1.0, 0.0, 0.0));
         glm::mat4 model = glm::mat4(1.0);
-        model = glm::rotate(model, glm::radians((float)glfwGetTime() * -10.0f), glm::normalize(glm::vec3(1.0, 0.0, 1.0))); // rotate the quad to show normal mapping from multiple directions
+        //model = glm::rotate(model, glm::radians((float)glfwGetTime() * -10.0f), glm::normalize(glm::vec3(1.0, 0.0, 1.0))); // rotate the quad to show normal mapping from multiple directions
 
 
         glBindVertexArray(planeVAO);
@@ -209,14 +212,16 @@ int main()
         shader.SetMat4("projection", projection);
         shader.SetMat4("view", view);
         shader.SetMat4("model", model);
-
         shader.SetVec3("lightPos", lightPos);
         shader.SetVec3("viewPos", camera.Position);
+        shader.SetFloat("heightScale", heightScale);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseMap);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, normalMap);
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, depthMap);
 
         //renderQuad();
         glDrawArrays(GL_TRIANGLES, 0, 6);
