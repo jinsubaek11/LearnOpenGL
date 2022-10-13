@@ -148,6 +148,13 @@
     <None Include="shaders\hdr.frag" />
     <None Include="shaders\hdr_lighting.vert" />
     <None Include="shaders\hdr_lighting.frag" />
+    <None Include="shaders\bloom.vert" />
+    <None Include="shaders\bloom.frag" />
+    <None Include="shaders\bloom_final.vert" />
+    <None Include="shaders\bloom_final.frag" />
+    <None Include="shaders\blur.vert" />
+    <None Include="shaders\blur.frag" />
+    <None Include="shaders\lightbox.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">
@@ -244,6 +251,15 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="textures\brickwall_normal.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\bricks2.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\bricks2_disp.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="textures\bricks2_normal.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

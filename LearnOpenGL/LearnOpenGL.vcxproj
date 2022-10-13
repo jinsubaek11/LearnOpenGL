@@ -192,6 +192,12 @@
     <None Include="shaders\asteroids.vert" />
     <None Include="shaders\blending.frag" />
     <None Include="shaders\blending.vs" />
+    <None Include="shaders\bloom.frag" />
+    <None Include="shaders\bloom.vert" />
+    <None Include="shaders\bloom_final.frag" />
+    <None Include="shaders\bloom_final.vert" />
+    <None Include="shaders\blur.frag" />
+    <None Include="shaders\blur.vert" />
     <None Include="shaders\color.frag" />
     <None Include="shaders\color.vs" />
     <None Include="shaders\cubemap.frag" />
@@ -221,6 +227,7 @@
     <None Include="shaders\hdr_lighting.vert" />
     <None Include="shaders\instancing.frag" />
     <None Include="shaders\instancing.vert" />
+    <None Include="shaders\lightbox.frag" />
     <None Include="shaders\lights.frag" />
     <None Include="shaders\lights.vs" />
     <None Include="shaders\model_default.frag" />
@@ -282,6 +289,9 @@
     <Image Include="textures\back.jpg" />
     <Image Include="textures\blending_transparent_window.png" />
     <Image Include="textures\bottom.jpg" />
+    <Image Include="textures\bricks2.jpg" />
+    <Image Include="textures\bricks2_disp.jpg" />
+    <Image Include="textures\bricks2_normal.jpg" />
     <Image Include="textures\brickwall.jpg" />
     <Image Include="textures\brickwall_normal.jpg" />
     <Image Include="textures\container.jpg" />
