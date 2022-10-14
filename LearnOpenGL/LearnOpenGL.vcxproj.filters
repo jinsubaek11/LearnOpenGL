@@ -155,6 +155,12 @@
     <None Include="shaders\blur.vert" />
     <None Include="shaders\blur.frag" />
     <None Include="shaders\lightbox.frag" />
+    <None Include="shaders\g_buffer.vert" />
+    <None Include="shaders\g_buffer.frag" />
+    <None Include="shaders\deferred_shading.vert" />
+    <None Include="shaders\deferred_shading.frag" />
+    <None Include="shaders\deferred_light_box.vert" />
+    <None Include="shaders\deferred_light_box.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">

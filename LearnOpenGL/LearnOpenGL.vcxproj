@@ -208,6 +208,10 @@
     <None Include="shaders\cubemapRefract.vert" />
     <None Include="shaders\debug_quad.frag" />
     <None Include="shaders\debug_quad.vert" />
+    <None Include="shaders\deferred_light_box.frag" />
+    <None Include="shaders\deferred_light_box.vert" />
+    <None Include="shaders\deferred_shading.frag" />
+    <None Include="shaders\deferred_shading.vert" />
     <None Include="shaders\depth_testing.frag" />
     <None Include="shaders\depth_testing.vs" />
     <None Include="shaders\directional_light.frag" />
@@ -221,6 +225,8 @@
     <None Include="shaders\geometry.frag" />
     <None Include="shaders\geometry.geom" />
     <None Include="shaders\geometry.vert" />
+    <None Include="shaders\g_buffer.frag" />
+    <None Include="shaders\g_buffer.vert" />
     <None Include="shaders\hdr.frag" />
     <None Include="shaders\hdr.vert" />
     <None Include="shaders\hdr_lighting.frag" />
