@@ -161,6 +161,12 @@
     <None Include="shaders\deferred_shading.frag" />
     <None Include="shaders\deferred_light_box.vert" />
     <None Include="shaders\deferred_light_box.frag" />
+    <None Include="shaders\ssao_geometry.vert" />
+    <None Include="shaders\ssao_geometry.frag" />
+    <None Include="shaders\ssao.vert" />
+    <None Include="shaders\ssao_lighting.frag" />
+    <None Include="shaders\ssao.frag" />
+    <None Include="shaders\ssao_blur.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">
